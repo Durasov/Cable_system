@@ -1,0 +1,29 @@
+.header {
+    background: #fafafa url(../resources/img/line.png) no-repeat 50% 110px;
+}
+
+.logo {
+    position: relative;
+    width: 360px;
+    height: 200px;
+    margin: -40px auto 0;
+    margin-top: 10px;
+}
+
+.logo img {
+    margin: 20px 30px;
+}
+
+.main{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form{
+    width: 50%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
