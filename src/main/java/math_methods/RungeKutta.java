@@ -1,4 +1,4 @@
-package main.java.math_methods;
+package math_methods;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -152,6 +152,40 @@ public class RungeKutta {
     private static List<Double> xNew = new ArrayList<Double>(15);
     private static List<Double> EpsCur = new ArrayList<Double>(15);
     private static List<Double> ExiOld = new ArrayList<Double>(15);
+
+    public static void ReadInitialParameters(double massFirst, double massSecond, double s1, double s2, double X1, double Y1,
+                                             double Z1, double X2, double Y2, double Z2, double RA11, double RA12, double RA13,
+                                             double RA21, double RA22, double RA23, double ix1, double iy1, double iz1,
+                                             double ix2, double iy2, double iz2){
+        mass1 = massFirst;
+        mass2 = massSecond;
+
+        S1 = s1;
+        S2 = s2;
+
+        x1 = X1;
+        y1 = Y1;
+        z1 = Z1;
+        x2 = X2;
+        y2 = Y2;
+        z2 = Z2;
+
+        RA1[0] = RA11;
+        RA1[1] = RA12;
+        RA1[2] = RA13;
+
+        RA2[0] = RA21;
+        RA2[1] = RA22;
+        RA2[2] = RA23;
+
+        //Моменты энерции
+        Ix1 = ix1;
+        Iy1 = iy1;
+        Iz1 = iz1;
+        Ix2 = ix2;
+        Iy2 = iy2;
+        Iz2 = iz2;
+    }
 
     public static void ReadInitialData() {
         try{
@@ -493,14 +527,14 @@ public class RungeKutta {
 
         g = g0 * Math.pow(R3/(R3+x.get(14)),2);
         ro = 1.225 * Math.exp(-x.get(14)/7000);
-        Cx1 = Cx01 * Math.cos(x.get(7));
+        Cx1 = Cx01 * Math.cos(x.get(7)); //аэродинамические коэффициенты Cx < 0, Cy > 0.
         Cyp1 = Cy01 * Math.sin(x.get(7));
         Cx2 = Cx02 * Math.cos(x.get(10));
         Cyp2 = Cy02 * Math.sin(x.get(10));
         Cyv1 = Cyp1 * Math.cos(x.get(7)) + Cx1 * Math.sin(x.get(7));
         Cyv2 = Cyp2 * Math.cos(x.get(10)) + Cx2 * Math.sin(x.get(10));
         q = 0.5 * ro * x.get(12) * x.get(12);
-        Rx1 = Cx1 * q * S1;
+        Rx1 = Cx1 * q * S1; //аэродинамические силы
         Ryp1 = Cyp1*q* S1;
         Rx2 = Cx2 * q * S2;
         Ryp2 = Cyp2 * q * S2;

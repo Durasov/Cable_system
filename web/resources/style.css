@@ -1,3 +1,17 @@
+body{
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #8F8F8F;
+}
+
+a:visited {
+    color: #8F8F8F; /* Цвет посещенных ссылок */
+}
+
+/* Стили для header */
 .header {
     background: #fafafa url(../resources/img/line.png) no-repeat 50% 110px;
 }
@@ -14,6 +28,35 @@
     margin: 20px 30px;
 }
 
+.header-menu{
+    height: 120px;
+    background-image: url('../resources/img/Deep Space.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header_logo{
+    text-align: center;
+    color: #757575;
+    font-size: 45px;
+    margin: 0;
+}
+
+.nav_ul{
+    display: flex;
+    padding-top: 50px;
+}
+
+.nav_li{
+    list-style: none;
+    color: #8F8F8F;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*===============================*/
+
 .main{
     margin-left: auto;
     margin-right: auto;
@@ -26,4 +69,49 @@
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 15px;
+    margin-top: 50px;
+    border-radius: 10px;
+    border-spacing: 0;
+    text-align: center;
+}
+
+th {
+    background: #3B3B3B;
+    color: white;
+    text-shadow: 0 1px 1px #2D2020;
+    padding: 10px 5px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+th:first-child {
+    border-top-left-radius: 10px;
+}
+th:last-child {
+    border-top-right-radius: 10px;
+    border-right: none;
+}
+td {
+    padding: 10px 20px;
+    background: #F8E391;
+    color: #8F8F8F;
+}
+tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+tr td:last-child {
+    border-right: none;
 }

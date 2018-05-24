@@ -1,6 +1,9 @@
-package main.java.servlets.index;
+package servlets.index;
 
-import main.java.math_methods.RungeKutta;
+import math_methods.RungeKutta;
+
+import dao.DAO;
+import dao.impl.DAOPostgres;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +22,10 @@ public class StartPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DAOPostgres.initInstance();
+        DAO dao = DAOPostgres.getInstance();
+        dao.setURL(DAOPostgres.DEFAULT_HOST, DAOPostgres.DEFAULT_DATABASE, DAOPostgres.DEFAULT_PORT);
+        dao.connect(DAOPostgres.DEFAULT_LOGIN, DAOPostgres.DEFAULT_PASSWORD);
         req.getRequestDispatcher("index.jsp").forward(req,resp);
     }
 

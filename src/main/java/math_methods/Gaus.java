@@ -1,4 +1,4 @@
-package main.java.math_methods;
+package math_methods;
 
 public class Gaus {
 

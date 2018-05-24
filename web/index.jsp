@@ -17,6 +17,24 @@
     <div class="content-main">
         <section class="header">
             <div class="logo"><img src="resources/img/logo2.png"></div>
+            <div class="header-menu">
+                <nav class="nav_item">
+                    <ul class="nav_ul">
+                        <li class="nav_li">
+                            <a href="/index" class="nav_link nav_link1"> Главная </a>
+                        </li>
+                        <li class="nav_li">
+                            <a href="/inputParameters" class="nav_link nav_link2"> Выбор параметров </a>
+                        </li>
+                        <li class="nav_li">
+                            <a href="/cyclists" class="nav_link nav_link3"> Результаты </a>
+                        </li>
+                        <li class="nav_li">
+                            <a href="/cyclists" class="nav_link nav_link3"> Графики </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </section>
     </div>
 </header>

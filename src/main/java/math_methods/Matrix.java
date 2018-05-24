@@ -1,4 +1,4 @@
-package main.java.math_methods;
+package math_methods;
 
 public class Matrix {
     public static double[][] Mul_Matr_33_33(double[][] A, double[][] B) {
