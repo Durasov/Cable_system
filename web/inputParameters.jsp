@@ -31,7 +31,7 @@
                             <a href="/cyclists" class="nav_link nav_link3"> Результаты </a>
                         </li>
                         <li class="nav_li">
-                            <a href="/cyclists" class="nav_link nav_link4"> Графики </a>
+                            <a href="/Graphics.jsp" class="nav_link nav_link4"> Графики </a>
                         </li>
                     </ul>
                 </nav>
@@ -42,36 +42,28 @@
 
 <table class="table" align="center">
     <thead>
-    <th>Id параметров</th>
-    <th>Масса 1 тела</th>
-    <th>Масса 2 тела</th>
-    <th>Площадь первого тела</th>
-    <th>Площадь второго тела</th>
-    <th>r1</th>
-    <th>первого</th>
-    <th>тела</th>
+    <th>Id</th>
+    <th>Mass1</th>
+    <th>Mass2</th>
+    <th>S1</th>
+    <th>S2</th>
+    <th>V</th>
+    <th>tetta</th>
+    <th>H</th>
     <th></th>
     <th></th>
     </thead>
     <tbody>
     <c:forEach items="${inputParametres}" var="inputParametr">
     <tr>
-        <td>${inputParametr.parametrsId}
-        </td>
-        <td>${inputParametr.massFirst}
-        </td>
-        <td>${inputParametr.massSecond}
-        </td>
-        <td>${inputParametr.s1}
-        </td>
-        <td>${inputParametr.s2}
-        </td>
-        <td>${inputParametr.x1}
-        </td>
-        <td>${inputParametr.y1}
-        </td>
-        <td>${inputParametr.z1}
-        </td>
+        <td>${inputParametr.parametrsId}</td>
+        <td>${inputParametr.massFirst}</td>
+        <td>${inputParametr.massSecond}</td>
+        <td>${inputParametr.s1}</td>
+        <td>${inputParametr.s2}</td>
+        <td>${inputParametr.v}</td>
+        <td>${inputParametr.tetta}</td>
+        <td>${inputParametr.h}</td>
         <td><a href="/useParameters?parametrsId=${inputParametr.parametrsId}">Выбрать</a></td>
         <td><a href="/deleteResult?resultId=${result.resultId}">Delete</a></td>
     </tr>
@@ -80,151 +72,141 @@
     <c:set var="inputParametrList" value="${inputParametres}" scope="session"/>
     <thead>
     <th></th>
-    <th>r2</th>
-    <th>второго</th>
-    <th>тела</th>
-    <th>|</th>
-    <th>Силы</th>
-    <th>аэродинамич.</th>
-    <th>сопротивления</th>
-    <th></th>
-    <th>|</th>
+    <th>x1</th>
+    <th>y1</th>
+    <th>z1</th>
+    <th>x2</th>
+    <th>y2</th>
+    <th>z2</th>
+    <th>x3</th>
+    <th>y3</th>
+    <th>z3</th>
     </thead>
     <tbody>
     <c:forEach items="${inputParametres}" var="inputParametr">
     <tr>
-        <td>${inputParametr.parametrsId}
-        </td>
-        <td>${inputParametr.x2}
-        </td>
-        <td>${inputParametr.y2}
-        </td>
-        <td>${inputParametr.z2}
-        </td>
-        <td>${inputParametr.RA11}
-        </td>
-        <td>${inputParametr.RA12}
-        </td>
-        <td>${inputParametr.RA13}
-        </td>
-        <td>${inputParametr.RA21}
-        </td>
-        <td>${inputParametr.RA22}
-        </td>
-        <td>${inputParametr.RA23}
-        </td>
+        <td>${inputParametr.parametrsId}</td>
+        <td>${inputParametr.x1}</td>
+        <td>${inputParametr.y1}</td>
+        <td>${inputParametr.z1}</td>
+        <td>${inputParametr.x2}</td>
+        <td>${inputParametr.y2}</td>
+        <td>${inputParametr.z2}</td>
+        <td>${inputParametr.x3}</td>
+        <td>${inputParametr.y3}</td>
+        <td>${inputParametr.z3}</td>
     </tr>
     </tbody>
     </c:forEach>
     <thead>
     <th></th>
-    <th>|</th>
+    <th>gamma1</th>
+    <th>alfa1</th>
+    <th>fi1</th>
+    <th>gamma2</th>
+    <th>alfa2</th>
+    <th>fi2</th>
+    <th>gamma3</th>
+    <th>alfa3</th>
+    <th>fi3</th>
+    </thead>
+    <tbody>
+    <c:forEach items="${inputParametres}" var="inputParametr">
+    <tr>
+        <td>${inputParametr.parametrsId}</td>
+        <td>${inputParametr.gamma1}</td>
+        <td>${inputParametr.alfa1}</td>
+        <td>${inputParametr.fi1}</td>
+        <td>${inputParametr.gamma2}</td>
+        <td>${inputParametr.alfa2}</td>
+        <td>${inputParametr.fi2}</td>
+        <td>${inputParametr.gamma3}</td>
+        <td>${inputParametr.alfa3}</td>
+        <td>${inputParametr.fi3}</td>
+    </tr>
+    </tbody>
+    </c:forEach>
+    <thead>
     <th></th>
-    <th>Моменты</th>
-    <th>инерции</th>
+    <th>w11</th>
+    <th>w12</th>
+    <th>w13</th>
+    <th>w21</th>
+    <th>w22</th>
+    <th>w23</th>
+    <th>w31</th>
+    <th>w32</th>
+    <th>w33</th>
+    </thead>
+    <tbody>
+    <c:forEach items="${inputParametres}" var="inputParametr">
+    <tr>
+        <td>${inputParametr.parametrsId}</td>
+        <td>${inputParametr.w11}</td>
+        <td>${inputParametr.w12}</td>
+        <td>${inputParametr.w13}</td>
+        <td>${inputParametr.w21}</td>
+        <td>${inputParametr.w22}</td>
+        <td>${inputParametr.w23}</td>
+        <td>${inputParametr.w31}</td>
+        <td>${inputParametr.w32}</td>
+        <td>${inputParametr.w33}</td>
+    </tr>
+    </tbody>
+    </c:forEach>
+    <thead>
     <th></th>
+    <th>Ix1</th>
+    <th>Iy1</th>
+    <th>Iz1</th>
+    <th>Ix2</th>
+    <th>Iy2</th>
+    <th>Iz2</th>
     <th></th>
-    <th>|</th>
     <th></th>
     <th></th>
     </thead>
     <tbody>
     <c:forEach items="${inputParametres}" var="inputParametr">
     <tr>
-        <td>${inputParametr.parametrsId}
-        </td>
-        <td>${inputParametr.ix1}
-        </td>
-        <td>${inputParametr.iy1}
-        </td>
-        <td>${inputParametr.iz1}
-        </td>
-        <td>${inputParametr.ix2}
-        </td>
-        <td>${inputParametr.iy2}
-        </td>
-        <td>${inputParametr.iz2}
-        </td>
+        <td>${inputParametr.parametrsId}</td>
+        <td>${inputParametr.ix1}</td>
+        <td>${inputParametr.iy1}</td>
+        <td>${inputParametr.iz1}</td>
+        <td>${inputParametr.ix2}</td>
+        <td>${inputParametr.iy2}</td>
+        <td>${inputParametr.iz2}</td>
         <td></td>
         <td></td>
         <td></td>
     </tr>
     </tbody>
     </c:forEach>
-
     <thead>
-    <th>Id параметров</th>
-    <th>Начальные </th>
-    <th>значения </th>
-    <th>компонент вектора </th>
-    <th>обобщенных</th>
-    <th>угловых</th>
-    <th>скоростей</th>
-    <th>Gamma1</th>
-    <th>Alfa1</th>
-    <th>Fi1</th>
+    <th></th>
+    <th>Cx1</th>
+    <th>Cy1</th>
+    <th>Cx2</th>
+    <th>Cy2</th>
+    <th>My1</th>
+    <th>Mz1</th>
+    <th>My2</th>
+    <th>Mz2</th>
+    <th></th>
     </thead>
     <tbody>
-    <c:forEach items="${inputParameters2}" var="inputParameters2">
+    <c:forEach items="${inputParametres}" var="inputParametr">
     <tr>
-        <td>${inputParameters2.parametrsId}
-        </td>
-        <td>${inputParameters2.w1}
-        </td>
-        <td>${inputParameters2.w2}
-        </td>
-        <td>${inputParameters2.w3}
-        </td>
-        <td>${inputParameters2.w4}
-        </td>
-        <td>${inputParameters2.w5}
-        </td>
-        <td>${inputParameters2.w6}
-        </td>
-        <td>${inputParameters2.gamma1}
-        </td>
-        <td>${inputParameters2.alfa1}
-        </td>
-        <td>${inputParameters2.fi1}
-        </td>
-    </tr>
-    </tbody>
-    </c:forEach>
-    <thead>
-    <th>Gamma2</th>
-    <th>Alfa2</th>
-    <th>Fi2</th>
-    <th>V</th>
-    <th>Tetta </th>
-    <th>H</th>
-    <th>Cx0 1 тела</th>
-    <th>Cy0 1 тела</th>
-    <th>Cx0 2 тела</th>
-    <th>Cy0 2 тела</th>
-    </thead>
-    <tbody>
-    <c:forEach items="${inputParameters2}" var="inputParameters2">
-    <tr>
-        <td>${inputParameters2.gamma2}
-        </td>
-        <td>${inputParameters2.alfa2}
-        </td>
-        <td>${inputParameters2.fi2}
-        </td>
-        <td>${inputParameters2.v}
-        </td>
-        <td>${inputParameters2.tetta}
-        </td>
-        <td>${inputParameters2.h}
-        </td>
-        <td>${inputParameters2.cx01}
-        </td>
-        <td>${inputParameters2.cx02}
-        </td>
-        <td>${inputParameters2.cy01}
-        </td>
-        <td>${inputParameters2.cy02}
-        </td>
+        <td>${inputParametr.parametrsId}</td>
+        <td>${inputParametr.cx1}</td>
+        <td>${inputParametr.cy1}</td>
+        <td>${inputParametr.cx2}</td>
+        <td>${inputParametr.cy2}</td>
+        <td>${inputParametr.my1}</td>
+        <td>${inputParametr.mz1}</td>
+        <td>${inputParametr.my2}</td>
+        <td>${inputParametr.mz2}</td>
+        <td></td>
     </tr>
     </tbody>
     </c:forEach>

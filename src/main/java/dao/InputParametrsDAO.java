@@ -27,29 +27,82 @@ public interface InputParametrsDAO {
 
     String Z2 = "z2";
 
-    String RA11 = "RA11";
+    String X3 = "x3";
 
-    String RA12 = "RA12";
+    String Y3 = "y3";
 
-    String RA13 = "RA13";
+    String Z3 = "z3";
 
-    String RA21 = "RA21";
+    String IX1 = "ix1";
 
-    String RA22 = "RA22";
+    String IY1 = "iy1";
 
-    String RA23 = "RA23";
+    String IZ1 = "iz1";
 
-    String IX1 = "Ix1";
+    String IX2 = "ix2";
 
-    String IY1 = "Iy1";
+    String IY2 = "iy2";
 
-    String IZ1 = "Iz1";
+    String IZ2 = "iz2";
 
-    String IX2 = "Ix2";
+    String CX1 = "cx1";
 
-    String IY2 = "Iy2";
+    String CY1 = "cy1";
 
-    String IZ2 = "Iz2";
+    String CX2 = "cx2";
+
+    String CY2 = "cy2";
+
+    String MY1 = "my1";
+
+    String MZ1 = "mz1";
+
+    String MY2 = "my2";
+
+    String MZ2 = "mz2";
+
+    String W11 = "w11";
+
+    String W12 = "w12";
+
+    String W13 = "w13";
+
+    String W21 = "w21";
+
+    String W22 = "w22";
+
+    String W23 = "w23";
+
+    String W31 = "w31";
+
+    String W32 = "w32";
+
+    String W33 = "w33";
+
+    String GAMMA1 = "gamma1";
+
+    String ALFA1 = "alfa1";
+
+    String FI1 = "fi1";
+
+    String GAMMA2 = "gamma2";
+
+    String ALFA2 = "alfa2";
+
+    String FI2 = "fi2";
+
+    String GAMMA3 = "gamma3";
+
+    String ALFA3 = "alfa3";
+
+    String FI3 = "fi3";
+
+    String V = "v";
+
+    String TETTA = "tetta";
+
+    String H = "h";
+
 
     void addInputParametrs(InputParametrs result);
 

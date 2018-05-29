@@ -26,12 +26,17 @@ public class UseInputParametersServlet extends HttpServlet {
             InputParametrs inputParametrs = (InputParametrs)inputParametrList.get(parametrsId);
             RungeKutta.ReadInitialParameters(inputParametrs.getMassFirst(), inputParametrs.getMassSecond(), inputParametrs.getS1(),
                     inputParametrs.getS2(),inputParametrs.getX1(),inputParametrs.getY1(),inputParametrs.getZ1(),inputParametrs.getX2(),
-                    inputParametrs.getY2(),inputParametrs.getZ2(),inputParametrs.getRA11(),inputParametrs.getRA12(),inputParametrs.getRA13(),
-                    inputParametrs.getRA21(),inputParametrs.getRA22(),inputParametrs.getRA23(),inputParametrs.getIx1(),inputParametrs.getIy1(),
-                    inputParametrs.getIz1(),inputParametrs.getIx2(),inputParametrs.getIy2(),inputParametrs.getIz2());
+                    inputParametrs.getY2(),inputParametrs.getZ2(),inputParametrs.getX3(),inputParametrs.getY3(),inputParametrs.getZ3(),
+                    inputParametrs.getIx1(),inputParametrs.getIy1(),inputParametrs.getIz1(),inputParametrs.getIx2(),inputParametrs.getIy2(),inputParametrs.getIz2(),
+                    inputParametrs.getCx1(),inputParametrs.getCy1(),inputParametrs.getCx2(),inputParametrs.getCy2(),
+                    inputParametrs.getMy1(),inputParametrs.getMz1(),inputParametrs.getMy2(),inputParametrs.getMz2(),
+                    inputParametrs.getW11(),inputParametrs.getW12(),inputParametrs.getW13(),inputParametrs.getW21(),inputParametrs.getW22(),inputParametrs.getW23(),
+                    inputParametrs.getW31(),inputParametrs.getW32(),inputParametrs.getW33(),inputParametrs.getGamma1(),inputParametrs.getAlfa1(),inputParametrs.getFi1(),
+                    inputParametrs.getGamma2(),inputParametrs.getAlfa2(),inputParametrs.getFi2(),inputParametrs.getGamma3(),inputParametrs.getAlfa3(),inputParametrs.getFi3(),
+                    inputParametrs.getV(),inputParametrs.getTetta(),inputParametrs.getH());
         }
         //req.getRequestDispatcher("editTeam.jsp").forward(req, resp);
-        resp.sendRedirect("/index");
+        resp.sendRedirect("/inputParametersRungeKutta.jsp");
     }
 
     @Override

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: user
-  Date: 18.05.2018
-  Time: 14:49
+  Date: 29.05.2018
+  Time: 17:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -27,7 +27,7 @@
                             <a href="/inputParameters" class="nav_link nav_link2"> Выбор параметров </a>
                         </li>
                         <li class="nav_li">
-                            <a href="/#" class="nav_link nav_link3"> Результаты </a>
+                            <a href="/cyclists" class="nav_link nav_link3"> Результаты </a>
                         </li>
                         <li class="nav_li">
                             <a href="/Graphics.jsp" class="nav_link nav_link3"> Графики </a>
@@ -38,9 +38,34 @@
         </section>
     </div>
 </header>
-
-<main class="main">
-    <h1>Main page</h1>
+<main>
+    <div><canvas id="line-chart" style="height:400px;width: content-box;"></canvas></div>
+    <script>
+        var a = <%=request.getAttribute("y")%>;
+        var b = <%=request.getAttribute("x")%>;
+        var ctx = document.getElementById("line-chart").getContext('2d');
+        new Chart (ctx, {
+            type: 'line',
+            data: {
+                labels: b,
+                datasets: [{
+                    data: a,
+                    label: "Угол атаки",
+                    borderColor: "red",
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: ''
+                }
+            }
+        });
+    </script>
 </main>
 </body>
 </html>
