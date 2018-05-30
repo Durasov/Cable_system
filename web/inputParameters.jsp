@@ -64,8 +64,8 @@
         <td>${inputParametr.v}</td>
         <td>${inputParametr.tetta}</td>
         <td>${inputParametr.h}</td>
-        <td><a href="/useParameters?parametrsId=${inputParametr.parametrsId}">Выбрать</a></td>
-        <td><a href="/deleteResult?resultId=${result.resultId}">Delete</a></td>
+        <td></td>
+        <td></td>
     </tr>
     </tbody>
     </c:forEach>
@@ -210,12 +210,27 @@
     </tr>
     </tbody>
     </c:forEach>
+    <tbody>
+    <c:forEach items="${inputParametres}" var="inputParametr">
+    <tr>
+        <td>${inputParametr.parametrsId}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a href="/useParameters?parametrsId=${inputParametr.parametrsId}">Выбрать</a></td>
+        <td><a href="/editInputParameters?parametrsId=${inputParametr.parametrsId}">Изменить</a></td>
+        <td><a href="/deleteInputParameters?parametrsId=${inputParametr.parametrsId}">Удалить</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+    </c:forEach>
 </table>
 <div class="description">
     <c:forEach items="${results}" var="result" begin="0" end="0">
         <a href="/addResult?resultId=${result.resultId}" class="add_button">Add result</a>
     </c:forEach>
 </div>
-</form>
 </body>
 </html>
