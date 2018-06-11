@@ -14,12 +14,18 @@ import java.io.IOException;
 
 @WebServlet("/editInputParameters")
 public class EditInputParametersServlet extends HttpServlet {
+        private static int team_id;
+
+        public static int getTeam_id(){
+                return team_id;
+        }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         InputParametrsDAO inputParametrsDAO = new InputParametrsDAOImpl(DAOPostgres.getInstance());
         InputParametrs inputParametrs = null;
         if (req.getParameter("parametrsId") != null) {
-            int team_id = Integer.parseInt(req.getParameter("parametrsId"));
+             team_id = Integer.parseInt(req.getParameter("parametrsId"));
             inputParametrs = inputParametrsDAO.getInputParametrs(team_id);
         }
         req.getSession().setAttribute("parametersToEdit", inputParametrs);
@@ -28,11 +34,6 @@ public class EditInputParametersServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        //if (//req.getParameter("team_id") != null &&
-                //req.getParameter("team_name") != null &&
-                        //req.getParameter("team_country") != null) {
-            //team_id = Integer.parseInt(req.getParameter("team_id"));
 
             double massFirst = Double.parseDouble(req.getParameter("massFirst"));
             double massSecond = Double.parseDouble(req.getParameter("massSecond"));
@@ -147,6 +148,5 @@ public class EditInputParametersServlet extends HttpServlet {
 
             inputParametrsDAO.updateInputParametrs(inputParametrs);
             resp.sendRedirect("/inputParameters");
-        //}
     }
 }

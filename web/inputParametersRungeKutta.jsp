@@ -27,10 +27,7 @@
                             <a href="/inputParameters" class="nav_link nav_link2"> Выбор параметров </a>
                         </li>
                         <li class="nav_li">
-                            <a href="/#" class="nav_link nav_link3"> Результаты </a>
-                        </li>
-                        <li class="nav_li">
-                            <a href="/Graphics.jsp" class="nav_link nav_link3"> Графики </a>
+                            <a href="/results" class="nav_link nav_link3"> Результаты </a>
                         </li>
                     </ul>
                 </nav>
@@ -43,38 +40,21 @@
     <form action="inputParametersRungeKutta" method="post" class="form">
         <table class="table" align="center">
             <thead>
-            <th>Количество интервалов</th>
-            <th>Начальное время</th>
             <th>Размер шага</th>
-            <th>Максимальный размер шага</th>
+            <th>Начальное время</th>
+            <th>Количество иттераций</th>
             </thead>
             <tbody>
                 <tr>
-                    <td><input name="n" type="number" required value="20" class="textbox"></td>
-                    <td><input name="t0" type="number" required value="0" class="textbox"></td>
-                    <td><input name="step" type="number" required value="0.05" step="0.01" class="textbox"> </td>
-                    <td><input name="stepmax" type="number" required value="0.05" step="0.01" class="textbox"></td>
+                    <td><input name="step" type="number" required value="0.1" step="0.01" class="textbox"> </td>
+                    <td><input name="t0" type="number" required value="0.0" step="0.01" class="textbox"></td>
+                    <td><input name="nmax" type="number" required value="350" class="textbox"></td>
                 </tr>
             </tbody>
-            <thead>
-            <th>n1</th>
-            <th>nmax</th>
-            <th>Интервал от,</th>
-            <th>до</th>
-            </thead>
-            <tbody>
             <tr>
-                <td><input name="n1" type="number" required value="1" class="textbox"> </td>
-                <td><input name="nmax" type="number" required value="100" class="textbox"></td>
-                <td><input name="a" type="number" required value="1" class="textbox"></td>
-                <td><input name="b" type="number" required value="20" class="textbox"></td>
-            </tr>
-            </tbody>
-            <tr>
+                <td><input type="submit" value="Расчитать" class="add_button"></td>
                 <td></td>
-                <td><input type="submit" value="Расчитать" class="button"></td>
-                <td><a href="/inputParameters" class="cancel">Назад</a></td>
-                <td></td>
+                <td><a href="/inputParameters" class="add_button">Назад</a></td>
             </tr>
             </tbody>
         </table>

@@ -35,14 +35,7 @@ public class UseInputParametersServlet extends HttpServlet {
                     inputParametrs.getGamma2(),inputParametrs.getAlfa2(),inputParametrs.getFi2(),inputParametrs.getGamma3(),inputParametrs.getAlfa3(),inputParametrs.getFi3(),
                     inputParametrs.getV(),inputParametrs.getTetta(),inputParametrs.getH());
         }
-        //req.getRequestDispatcher("editTeam.jsp").forward(req, resp);
         resp.sendRedirect("/inputParametersRungeKutta.jsp");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double massSecond = Double.parseDouble(req.getParameter("massSecond"));
-        req.getRequestDispatcher("/TestGraphics.jsp").forward(req, resp);
-        //resp.sendRedirect("/index");
-    }
 }

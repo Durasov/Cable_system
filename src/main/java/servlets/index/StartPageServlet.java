@@ -1,7 +1,5 @@
 package servlets.index;
 
-import math_methods.RungeKutta;
-
 import dao.DAO;
 import dao.impl.DAOPostgres;
 

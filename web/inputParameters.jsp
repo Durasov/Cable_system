@@ -9,7 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>CableSystem</title>
+    <title>Тросовая система</title>
     <link rel="stylesheet" type="text/css" href="resources/style.css"/>
     <link rel="stylesheet" type="text/css" href="resources/style2.css"/>
 </head>
@@ -28,10 +28,7 @@
                             <a href="/inputParameters" class="nav_link nav_link2"> Выбор параметров </a>
                         </li>
                         <li class="nav_li">
-                            <a href="/cyclists" class="nav_link nav_link3"> Результаты </a>
-                        </li>
-                        <li class="nav_li">
-                            <a href="/Graphics.jsp" class="nav_link nav_link4"> Графики </a>
+                            <a href="/results" class="nav_link nav_link3"> Результаты </a>
                         </li>
                     </ul>
                 </nav>
@@ -39,6 +36,51 @@
         </section>
     </div>
 </header>
+
+<table class="table" align="center">
+    <tr>
+        <td rowspan="1" class="first">Mass1,Mass2</td>
+        <td> - массы первого и второго тела</td>
+        <td rowspan="1" class="second">x1,y1,z1,x2,y2,z2,x3,y3,z3</td>
+        <td> - где x3 длина троса</td>
+    </tr>
+    <tr>
+        <td rowspan="1" class="first">S1,S3</td>
+        <td> - площади первого и второго тела</td>
+        <td rowspan="1" class="second">gamma1,gamma2,gamm3</td>
+        <td> - угол крена плоскости угла атаки</td>
+    </tr>
+    <tr>
+        <td rowspan="1" class="first">V</td>
+        <td> - скорость центра масс связки двух тел</td>
+        <td rowspan="1" class="second">alfa1,alfa2,alfa3</td>
+        <td> - пространственный угол атаки</td>
+    </tr>
+    <tr>
+        <td rowspan="1" class="first">Tetta</td>
+        <td> - угол наклона траектории</td>
+        <td rowspan="1" class="second">fi1,fi2,fi3</td>
+        <td> - аэродинамический угол крена</td>
+    </tr>
+    <tr>
+        <td rowspan="1" class="first">H</td>
+        <td> - высота над уровнем моря</td>
+        <td rowspan="1" class="second">w11-w33</td>
+        <td> - вектор компонент угловых скоростей</td>
+    </tr>
+    <tr>
+        <td rowspan="1" class="first">Ix1,Iy1,Iz1,Ix2,Iy2,Iz2</td>
+        <td> - моменты инерции</td>
+        <td rowspan="1" class="second">Cx1,Cy1,Cx2,Cy2</td>
+        <td> - аэродинамические коэффициенты</td>
+    </tr>
+    <tr>
+        <td rowspan="1" class="first">my1,mz1,my2,mz2</td>
+        <td> - </td>
+        <td rowspan="1" class="second"></td>
+        <td></td>
+    </tr>
+</table>
 
 <table class="table" align="center">
     <thead>
@@ -215,22 +257,17 @@
     <tr>
         <td>${inputParametr.parametrsId}</td>
         <td></td>
+        <td><a href="/useParameters?parametrsId=${inputParametr.parametrsId}" class="add_button">Выбрать</a></td>
         <td></td>
+        <td><a href="/addInputParameters" class="add_button">Добавить</a></td>
         <td></td>
-        <td><a href="/useParameters?parametrsId=${inputParametr.parametrsId}">Выбрать</a></td>
-        <td><a href="/editInputParameters?parametrsId=${inputParametr.parametrsId}">Изменить</a></td>
-        <td><a href="/deleteInputParameters?parametrsId=${inputParametr.parametrsId}">Удалить</a></td>
+        <td><a href="/editInputParameters?parametrsId=${inputParametr.parametrsId}" class="add_button">Изменить</a></td>
         <td></td>
-        <td></td>
+        <td><a href="/deleteInputParameters?parametrsId=${inputParametr.parametrsId}" class="add_button">Удалить</a></td>
         <td></td>
     </tr>
     </tbody>
     </c:forEach>
 </table>
-<div class="description">
-    <c:forEach items="${results}" var="result" begin="0" end="0">
-        <a href="/addResult?resultId=${result.resultId}" class="add_button">Add result</a>
-    </c:forEach>
-</div>
 </body>
 </html>

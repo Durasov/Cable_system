@@ -1,6 +1,6 @@
 package math_methods;
 
-public class Matrix {
+public class MatrixOperations {
     public static double[][] Mul_Matr_33_33(double[][] A, double[][] B) {
 
         int aRows = A.length;
@@ -29,14 +29,27 @@ public class Matrix {
         return C;
     }
 
-    public static double[][] Transp_Matr_33 (double[][] A, double[][] B){
+    public static double[][] New_Transp_Matr_33 (double[][] A){
 
+        double[][] B = new double[A.length][A.length];
         for (int i = 0; i < 3; i++) { // aRows
             for (int j = 0; j < 3; j++) { // bColumn
                 B[i][j] = A[j][i];
             }
         }
         return B;
+    }
+
+    public static double[] Mul_Matr_88_81 (double[][] A, double[] B){
+
+        double[] C = new double[8];
+        for (int i = 0; i < 8; i++) {
+            C[i] = 0.00000;
+            for (int j = 0; j < 8; j++){
+                C[i] += A[i][j] * B[j];
+            }
+        }
+        return C;
     }
 
     public static void Vect_Vect_31 (double[] A, double[] B, double[] C){
@@ -84,12 +97,10 @@ public class Matrix {
     }
 
     public static double Modul_Vect(double[] A){
-        //A : Vector Absolute AUT;
         double Prom = 0;
 
         for (int j = 0; j < 2; j++){
             Prom += Math.pow(A[j],2);
-            //Modul_Vect := sqrt( Prom );
         }
         return Math.sqrt(Prom);
     }

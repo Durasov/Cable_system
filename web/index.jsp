@@ -27,10 +27,7 @@
                             <a href="/inputParameters" class="nav_link nav_link2"> Выбор параметров </a>
                         </li>
                         <li class="nav_li">
-                            <a href="/#" class="nav_link nav_link3"> Результаты </a>
-                        </li>
-                        <li class="nav_li">
-                            <a href="/Graphics.jsp" class="nav_link nav_link3"> Графики </a>
+                            <a href="/results" class="nav_link nav_link3"> Результаты </a>
                         </li>
                     </ul>
                 </nav>
@@ -40,7 +37,40 @@
 </header>
 
 <main class="main">
-    <h1>Main page</h1>
+    <ul class="news_ul">
+        <li class="news1_li">
+            <div class="news1">
+                <img src="resources/img/1.jpg" alt="" class="news1_img">
+                <div class="news_description">
+                    <p class="news_text">What will happen in April of 2018? This month in Russia will be rich in only one race under the auspices of the FVSR, this is the championship of Russia and All-Russian competitions that will be held on 24-27 in Moscow.</p>
+                </div>
+            </div>
+        </li>
+        <li class="news2_li">
+            <div class="news2">
+                <img src="resources/img/2.jpg" alt="" class="news1_img">
+                <div class="news_description">
+                    <p class="news_text">What will happen in April of 2018? This month in Russia will be rich in only one race under the auspices of the FVSR, this is the championship of Russia and All-Russian competitions that will be held on 24-27 in Moscow.</p>
+                </div>
+            </div>
+        </li>
+        <li class="news3_li">
+            <div class="news3">
+                <img src="resources/img/3.jpg" alt="" class="news1_img">
+                <div class="news_description">
+                    <p class="news_text">What will happen in April of 2018? This month in Russia will be rich in only one race under the auspices of the FVSR, this is the championship of Russia and All-Russian competitions that will be held on 24-27 in Moscow.</p>
+                </div>
+            </div>
+        </li>
+        <li class="news4_li">
+            <div class="news4">
+                <img src="resources/img/4.jpg" alt="" class="news1_img">
+                <div class="news_decription">
+                    <p class="news_text">What will happen in April of 2018? This month in Russia will be rich in only one race under the auspices of the FVSR, this is the championship of Russia and All-Russian competitions that will be held on 24-27 in Moscow.</p>
+                </div>
+            </div>
+        </li>
+    </ul>
 </main>
 </body>
 </html>

@@ -18,60 +18,67 @@ import java.util.List;
 @WebServlet("/inputParametersRungeKutta")
 public class inputParametersRungeKutta extends HttpServlet {
 
-    private static List <Double> d = new ArrayList<Double>(15);
+    private static List <Double> x = new ArrayList<Double>(15);
+    private static List <Double> y = new ArrayList<Double>(15);
+    private static List <Double> gamma1 = new ArrayList<Double>(15);
+    private static List <Double> fi1 = new ArrayList<Double>(15);
+    private static List <Double> N = new ArrayList<Double>(15);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int n;
-        int t0;
-        double step;
-        double stepmax;
-        int n1;
+        double t0;
+        double h;
         int nmax;
-        int a;
-        int b;
 
-        if (req.getParameter("n") != null &&
+        if (req.getParameter("step") != null &&
                 req.getParameter("t0") != null &&
-                req.getParameter("step") != null) {
+                req.getParameter("nmax") != null) {
             HttpSession session = req.getSession();
-            n = Integer.parseInt(req.getParameter("n"));
-            t0 = Integer.parseInt(req.getParameter("t0"));
-            step = Double.parseDouble(req.getParameter("step"));
-            stepmax = Double.parseDouble(req.getParameter("stepmax"));
-            n1 = Integer.parseInt(req.getParameter("n1"));
+            h = Double.parseDouble(req.getParameter("step"));
+            t0 = Double.parseDouble(req.getParameter("t0"));
             nmax = Integer.parseInt(req.getParameter("nmax"));
-            a = Integer.parseInt(req.getParameter("a"));
-            b = Integer.parseInt(req.getParameter("b"));
 
-            d.add(0,0.1); //сделать поменьше, это минимальный размер шага
-            for(int i = 1; i < n; i++){
-                d.add(i,0.1);
-            }
-
-            //RungeKutta.ReadInitialData();
-            RungeKutta.Rungecutt(n,t0,step,stepmax,d, n1,nmax);
-            boolean flag = RungeKutta.getFlag();
-            while(flag){
-                flag = RungeKutta.getFlag();
-                RungeKutta.Rungecutt(n,RungeKutta.getT0(),RungeKutta.getStep(),stepmax,d, n1,nmax);
-            }
-
-            List <Double> x = RungeKutta.x();
-            List<Double> y = RungeKutta.y(); // тут массив Alfa1
+            RungeKutta.Runge_Kutta4(h,t0,nmax);
+            x = RungeKutta.x();
+            y = RungeKutta.y(); // тут массив Alfa1
+            gamma1 = RungeKutta.getGamma1();
+            fi1 = RungeKutta.getFi1();
+            N = RungeKutta.N();
 
             List<Double> TestX = new ArrayList<Double>(15); // x на заданном интервале
             List<Double> TestY = new ArrayList<Double>(15); // y на заданном интервале
-            for (int i = a; i < b; i++){
+            List<Double> TestN = new ArrayList<Double>(15); // N на заданном интервале
+            for (int i = 0; i < 5000; i++){
                 TestX.add(x.get(i));
                 TestY.add(y.get(i));
+                TestN.add(N.get(i));
             }
 
-            req.setAttribute("x", x);
-            req.setAttribute("y", y);
+            req.setAttribute("x", TestX);
+            req.setAttribute("y", TestY);
+            req.setAttribute("x1", x);
+            req.setAttribute("N", N);
+
+            long usedBytes = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory(); //потом поделить на 1048576
 
             req.getRequestDispatcher("/Graphics.jsp").forward(req,resp);
         }
+    }
+
+    public static List<Double> getY(){
+        return y;
+    }
+
+    public static List<Double> getGamma1(){
+        return gamma1;
+    }
+
+    public static List<Double> getFi1(){
+        return fi1;
+    }
+
+    public static List<Double> getN(){
+        return N;
     }
 }
 

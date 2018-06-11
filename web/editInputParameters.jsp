@@ -28,10 +28,7 @@
                             <a href="/inputParameters" class="nav_link nav_link2"> Выбор параметров </a>
                         </li>
                         <li class="nav_li">
-                            <a href="/cyclists" class="nav_link nav_link3"> Результаты </a>
-                        </li>
-                        <li class="nav_li">
-                            <a href="/Graphics.jsp" class="nav_link nav_link4"> Графики </a>
+                            <a href="/results" class="nav_link nav_link3"> Результаты </a>
                         </li>
                     </ul>
                 </nav>
@@ -200,11 +197,6 @@
     </tbody>
 </table>
 </form>
-<div class="description">
-    <c:forEach items="${results}" var="result" begin="0" end="0">
-        <a href="/addResult?resultId=${result.resultId}" class="add_button">Add result</a>
-    </c:forEach>
-</div>
 </body>
 </html>
 

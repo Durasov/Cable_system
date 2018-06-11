@@ -57,11 +57,36 @@ a:visited {
 
 /*===============================*/
 
+/* Стили для main */
 .main{
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
 }
 
+.news1_img{
+    max-width: 260px;
+    max-height: 344px;
+    float: left;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.news_ul{
+    display: flex;
+    list-style: none;
+}
+
+.news_text{
+    max-width: 260px;
+    margin-left: 50px;
+    font-size: 15px;
+    line-height: 1.55;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+}
+/*===============================*/
+
+/* Стили для table */
 .form{
     width: 50%;
     margin: auto;
@@ -103,8 +128,9 @@ th:last-child {
 }
 td {
     padding: 10px 20px;
-    background: #F8E391;
-    color: #8F8F8F;
+    background: #DCDCDC;
+    color: #696969;
+    text-shadow: 0.5px 0.5px #696969;
 }
 tr:last-child td:first-child {
     border-radius: 0 0 0 10px;
@@ -115,3 +141,66 @@ tr:last-child td:last-child {
 tr td:last-child {
     border-right: none;
 }
+
+.editParam{
+    width: 90px;
+    background: #DCDCDC;
+    font-size: 15px;
+}
+/*===============================*/
+
+/* Стили для table2 */
+.first {
+    background: #3B3B3B;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+}
+
+.second {
+    background: #3B3B3B;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+}
+/*===============================*/
+
+.add_button{
+    width:100px;
+    text-decoration:none;
+    text-align:center;
+    margin:5px auto;
+    display: block;
+    background-image: linear-gradient(to left,transparent,transparent 50%,#00c6ff 50%,#00c6ff);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+    font: 400 18px tahoma;
+    border: 1px solid #FF7F50;
+}
+
+.savebutton{
+    padding:8px 12px;
+    margin:8px 0 0;
+    margin-bottom: 30px;
+    font-family:'Montserrat',sans-serif;
+    border:2px solid #78788c;
+    font-size: 17px;
+    color: #78788c;
+    background:0;
+    cursor:pointer;
+    transition:all .3s;
+    margin-left: 610px;
+}
+
+/* Стили для results_table */
+.container {
+    height: 300px;
+    overflow: scroll;
+    margin-bottom: 50px;
+}
+
+.results_table {
+    width: 1000px;
+}
+/*===============================*/
