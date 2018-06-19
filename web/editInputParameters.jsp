@@ -51,13 +51,13 @@
     </thead>
     <tbody>
     <tr>
-        <td><input name="massFirst" required type="number" value="${parametersToEdit.massFirst}" class="editParam"></td>
-        <td><input name="massSecond" required type="number" value="${parametersToEdit.massSecond}" class="editParam"></td>
-        <td><input name="S1" required type="number" value="${parametersToEdit.s1}" class="editParam"></td>
-        <td><input name="S2" required type="number" value="${parametersToEdit.s2}" class="editParam"></td>
-        <td><input name="v" required type="number" value="${parametersToEdit.v}" class="editParam"></td>
-        <td><input name="tetta" required type="number" value="${parametersToEdit.tetta}" class="editParam"></td>
-        <td><input name="h" required type="number" value="${parametersToEdit.h}" class="editParam"></td>
+        <td><input name="massFirst" required type="number" value="${parametersToEdit.massFirst}" class="editParam" step="0.1"></td>
+        <td><input name="massSecond" required type="number" value="${parametersToEdit.massSecond}" class="editParam" step="0.1"></td>
+        <td><input name="S1" required type="number" value="${parametersToEdit.s1}" class="editParam" step="0.1"></td>
+        <td><input name="S2" required type="number" value="${parametersToEdit.s2}" class="editParam" step="0.1"></td>
+        <td><input name="v" required type="number" value="${parametersToEdit.v}" class="editParam" step="0.1"></td>
+        <td><input name="tetta" required type="number" value="${parametersToEdit.tetta}" class="editParam" step="0.1"></td>
+        <td><input name="h" required type="number" value="${parametersToEdit.h}" class="editParam" step="0.1"></td>
         <td></td>
         <td></td>
     </tr>
@@ -75,15 +75,15 @@
     </thead>
     <tbody>
     <tr>
-        <td><input name="x1" required type="number" value="${parametersToEdit.x1}" class="editParam"></td>
-        <td><input name="y1" required type="number" value="${parametersToEdit.y1}" class="editParam"></td>
-        <td><input name="z1" required type="number" value="${parametersToEdit.z1}" class="editParam"></td>
-        <td><input name="x2" required type="number" value="${parametersToEdit.x2}" class="editParam"></td>
-        <td><input name="y2" required type="number" value="${parametersToEdit.y2}" class="editParam"></td>
-        <td><input name="z2" required type="number" value="${parametersToEdit.z2}" class="editParam"></td>
-        <td><input name="x3" required type="number" value="${parametersToEdit.x3}" class="editParam"></td>
-        <td><input name="y3" required type="number" value="${parametersToEdit.y3}" class="editParam"></td>
-        <td><input name="z3" required type="number" value="${parametersToEdit.z3}" class="editParam"></td>
+        <td><input name="x1" required type="number" value="${parametersToEdit.x1}" class="editParam" step="0.1"></td>
+        <td><input name="y1" required type="number" value="${parametersToEdit.y1}" class="editParam" step="0.1"></td>
+        <td><input name="z1" required type="number" value="${parametersToEdit.z1}" class="editParam" step="0.1"></td>
+        <td><input name="x2" required type="number" value="${parametersToEdit.x2}" class="editParam" step="0.1"></td>
+        <td><input name="y2" required type="number" value="${parametersToEdit.y2}" class="editParam" step="0.1"></td>
+        <td><input name="z2" required type="number" value="${parametersToEdit.z2}" class="editParam" step="0.1"></td>
+        <td><input name="x3" required type="number" value="${parametersToEdit.x3}" class="editParam" step="0.1"></td>
+        <td><input name="y3" required type="number" value="${parametersToEdit.y3}" class="editParam" step="0.1"></td>
+        <td><input name="z3" required type="number" value="${parametersToEdit.z3}" class="editParam" step="0.1"></td>
     </tr>
     </tbody>
     <thead>
@@ -99,15 +99,15 @@
     </thead>
     <tbody>
     <tr>
-        <td><input name="gamma1" required type="number" value="${parametersToEdit.gamma1}" class="editParam"></td>
-        <td><input name="alfa1" required type="number" value="${parametersToEdit.alfa1}" class="editParam"></td>
-        <td><input name="fi1" required type="number" value="${parametersToEdit.fi1}" class="editParam"></td>
-        <td><input name="gamma2" required type="number" value="${parametersToEdit.gamma2}" class="editParam"></td>
-        <td><input name="alfa2" required type="number" value="${parametersToEdit.alfa2}" class="editParam"></td>
-        <td><input name="fi2" required type="number" value="${parametersToEdit.fi2}" class="editParam"></td>
-        <td><input name="gamma3" required type="number" value="${parametersToEdit.gamma3}" class="editParam"></td>
-        <td><input name="alfa3" required type="number" value="${parametersToEdit.alfa3}" class="editParam"></td>
-        <td><input name="fi3" required type="number" value="${parametersToEdit.fi3}" class="editParam"></td>
+        <td><input name="gamma1" required type="number" value="${parametersToEdit.gamma1}" class="editParam" step="0.1"></td>
+        <td><input name="alfa1" required type="number" value="${parametersToEdit.alfa1}" class="editParam" step="0.1"></td>
+        <td><input name="fi1" required type="number" value="${parametersToEdit.fi1}" class="editParam" step="0.1"></td>
+        <td><input name="gamma2" required type="number" value="${parametersToEdit.gamma2}" class="editParam" step="0.1"></td>
+        <td><input name="alfa2" required type="number" value="${parametersToEdit.alfa2}" class="editParam" step="0.1"></td>
+        <td><input name="fi2" required type="number" value="${parametersToEdit.fi2}" class="editParam" step="0.1"></td>
+        <td><input name="gamma3" required type="number" value="${parametersToEdit.gamma3}" class="editParam" step="0.1"></td>
+        <td><input name="alfa3" required type="number" value="${parametersToEdit.alfa3}" class="editParam" step="0.1"></td>
+        <td><input name="fi3" required type="number" value="${parametersToEdit.fi3}" class="editParam" step="0.1"></td>
     </tr>
     </tbody>
     <thead>
@@ -123,15 +123,15 @@
     </thead>
     <tbody>
     <tr>
-        <td><input name="w11" required type="number" value="${parametersToEdit.w11}" class="editParam"></td>
-        <td><input name="w12" required type="number" value="${parametersToEdit.w12}" class="editParam"></td>
-        <td><input name="w13" required type="number" value="${parametersToEdit.w13}" class="editParam"></td>
-        <td><input name="w21" required type="number" value="${parametersToEdit.w21}" class="editParam"></td>
-        <td><input name="w22" required type="number" value="${parametersToEdit.w22}" class="editParam"></td>
-        <td><input name="w23" required type="number" value="${parametersToEdit.w23}" class="editParam"></td>
-        <td><input name="w31" required type="number" value="${parametersToEdit.w31}" class="editParam"></td>
-        <td><input name="w32" required type="number" value="${parametersToEdit.w32}" class="editParam"></td>
-        <td><input name="w33" required type="number" value="${parametersToEdit.w33}" class="editParam"></td>
+        <td><input name="w11" required type="number" value="${parametersToEdit.w11}" class="editParam" step="0.1"></td>
+        <td><input name="w12" required type="number" value="${parametersToEdit.w12}" class="editParam" step="0.1"></td>
+        <td><input name="w13" required type="number" value="${parametersToEdit.w13}" class="editParam" step="0.1"></td>
+        <td><input name="w21" required type="number" value="${parametersToEdit.w21}" class="editParam" step="0.1"></td>
+        <td><input name="w22" required type="number" value="${parametersToEdit.w22}" class="editParam" step="0.1"></td>
+        <td><input name="w23" required type="number" value="${parametersToEdit.w23}" class="editParam" step="0.1"></td>
+        <td><input name="w31" required type="number" value="${parametersToEdit.w31}" class="editParam" step="0.1"></td>
+        <td><input name="w32" required type="number" value="${parametersToEdit.w32}" class="editParam" step="0.1"></td>
+        <td><input name="w33" required type="number" value="${parametersToEdit.w33}" class="editParam" step="0.1"></td>
     </tr>
     </tbody>
     <thead>
@@ -147,12 +147,12 @@
     </thead>
     <tbody>
     <tr>
-        <td><input name="ix1" required type="number" value="${parametersToEdit.ix1}" class="editParam"></td>
-        <td><input name="iy1" required type="number" value="${parametersToEdit.iy1}" class="editParam"></td>
-        <td><input name="iz1" required type="number" value="${parametersToEdit.iz1}" class="editParam"></td>
-        <td><input name="ix2" required type="number" value="${parametersToEdit.iy2}" class="editParam"></td>
-        <td><input name="iy2" required type="number" value="${parametersToEdit.iy2}" class="editParam"></td>
-        <td><input name="iz2" required type="number" value="${parametersToEdit.iz2}" class="editParam"></td>
+        <td><input name="ix1" required type="number" value="${parametersToEdit.ix1}" class="editParam" step="0.1"></td>
+        <td><input name="iy1" required type="number" value="${parametersToEdit.iy1}" class="editParam" step="0.1"></td>
+        <td><input name="iz1" required type="number" value="${parametersToEdit.iz1}" class="editParam" step="0.1"></td>
+        <td><input name="ix2" required type="number" value="${parametersToEdit.iy2}" class="editParam" step="0.1"></td>
+        <td><input name="iy2" required type="number" value="${parametersToEdit.iy2}" class="editParam" step="0.1"></td>
+        <td><input name="iz2" required type="number" value="${parametersToEdit.iz2}" class="editParam" step="0.1"></td>
         <td></td>
         <td></td>
         <td></td>

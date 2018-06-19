@@ -40,6 +40,16 @@ public class MatrixOperations {
         return B;
     }
 
+    public static double[][] Transp_Matr_33 (double[][] A, double[][] B){
+
+        for (int i = 0; i < 3; i++) { // aRows
+            for (int j = 0; j < 3; j++) { // bColumn
+                B[i][j] = A[j][i];
+            }
+        }
+        return B;
+    }
+
     public static double[] Mul_Matr_88_81 (double[][] A, double[] B){
 
         double[] C = new double[8];
@@ -70,7 +80,7 @@ public class MatrixOperations {
         return C;
     }
     public static double[] Mul_Matr_31_Num(double[] A, double Num, double[] B){
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < 3; i++) {
             B[i] = A[i] * Num;
         }
         return B;
@@ -99,7 +109,7 @@ public class MatrixOperations {
     public static double Modul_Vect(double[] A){
         double Prom = 0;
 
-        for (int j = 0; j < 2; j++){
+        for (int j = 0; j < 3; j++){
             Prom += Math.pow(A[j],2);
         }
         return Math.sqrt(Prom);

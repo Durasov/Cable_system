@@ -64,6 +64,33 @@
             }
         });
     </script>
+        <div><canvas id="line-chart5" style="height:400px;width: content-box;"></canvas></div>
+        <script>
+            var a = <%=request.getAttribute("gamma1")%>;
+            var b = <%=request.getAttribute("TestX")%>;
+            var ctx = document.getElementById("line-chart5").getContext('2d');
+            new Chart (ctx, {
+                type: 'line',
+                data: {
+                    labels: b,
+                    datasets: [{
+                        data: a,
+                        label: "Скоростной напор",
+                        borderColor: "red",
+                        fill: false
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: ''
+                    }
+                }
+            });
+        </script>
         <div><canvas id="line-chart2" style="height:400px;width: content-box;"></canvas></div>
         <script>
             var a = <%=request.getAttribute("N")%>;
@@ -76,6 +103,60 @@
                     datasets: [{
                         data: a,
                         label: "Сила натяжения троса",
+                        borderColor: "red",
+                        fill: false
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: ''
+                    }
+                }
+            });
+        </script>
+        <div><canvas id="line-chart3" style="height:400px;width: content-box;"></canvas></div>
+        <script>
+            var a = <%=request.getAttribute("H")%>;
+            var b = <%=request.getAttribute("x1")%>;
+            var ctx = document.getElementById("line-chart3").getContext('2d');
+            new Chart (ctx, {
+                type: 'line',
+                data: {
+                    labels: b,
+                    datasets: [{
+                        data: a,
+                        label: "Изменение высоты",
+                        borderColor: "red",
+                        fill: false
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: ''
+                    }
+                }
+            });
+        </script>
+        <div><canvas id="line-chart4" style="height:400px;width: content-box;"></canvas></div>
+        <script>
+            var a = <%=request.getAttribute("R0")%>;
+            var b = <%=request.getAttribute("H")%>;
+            var ctx = document.getElementById("line-chart4").getContext('2d');
+            new Chart (ctx, {
+                type: 'line',
+                data: {
+                    labels: b,
+                    datasets: [{
+                        data: a,
+                        label: "Плотность атмосферы",
                         borderColor: "red",
                         fill: false
                     }

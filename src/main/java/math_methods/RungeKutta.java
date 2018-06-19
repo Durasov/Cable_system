@@ -71,7 +71,7 @@ public class RungeKutta {
     private static double[] r1R1 = new double[3];
     private static double[] r2R1 = new double[3];
     private static double[] r2R2 = new double[3];
-    private static double[] b1 = new double [17];
+    //private static double[] b1 = new double [17];
     private static double[] rad1 = new double[3];
     private static double[] rad2 = new double[3];
     private static double[] rad3 = new double[3];
@@ -120,6 +120,9 @@ public class RungeKutta {
     private static List<Double> Alfa1 = new ArrayList<Double>(15);
     private static List<Double> Gamma1 = new ArrayList<Double>(15);
     private static List<Double> Fi1 = new ArrayList<Double>(15);
+    private static List<Double> H = new ArrayList<Double>(15);
+    private static List<Double> R0 = new ArrayList<Double>(15);
+    private static List<Double> qList = new ArrayList<Double>(15);
 
     public static void ReadInitialParameters(double massFirst, double massSecond, double s1, double s2, double X1, double Y1,
                                              double Z1, double X2, double Y2, double Z2, double X3, double Y3, double Z3,
@@ -169,6 +172,18 @@ public class RungeKutta {
         if (NList.size() > 0){
             NList.clear();
         }
+
+        if(H.size() > 0){
+            H.clear();
+        }
+
+        if(R0.size() > 0){
+            R0.clear();
+        }
+
+        if(qList.size() > 0){
+            qList.clear();
+        }
         //Всё что выше делаем для того, чтобы при повторном вызове списки не были заполнены.
 
         mass1 = massFirst;
@@ -194,7 +209,7 @@ public class RungeKutta {
         Iy2 = iy2;
         Iz2 =  iz2;
 
-        Cx1 = -cx1;
+        Cx1 = cx1;
         Cy1 = cy1;
         Cx2 = cx2;
         Cy2 = cy2;
@@ -258,7 +273,7 @@ public class RungeKutta {
     }
 
     static void PROF (double t, List<Double> x, List<Double> f) {
-
+        double[] b1 = new double [17];
         //Вычисление матрицы L
         //Матрицы элементарных поворотов
         double [][] Lg1 = {
@@ -336,15 +351,15 @@ public class RungeKutta {
         L3T = MatrixOperations.New_Transp_Matr_33(L3); //L3T - от СК3 к траекторной
 
         double[][] L11 = MatrixOperations.Mul_Matr_33_33(L1,L1T);
-        double[][] L12 = MatrixOperations.Mul_Matr_33_33(L1,L2T);
-        double[][] L13 = MatrixOperations.Mul_Matr_33_33(L1,L3T);
+        double[][] L12 = MatrixOperations.Mul_Matr_33_33(L2,L1T);
+        double[][] L13 = MatrixOperations.Mul_Matr_33_33(L3,L1T);
 
-        double[][] L21 = MatrixOperations.Mul_Matr_33_33(L2,L1T);
+        double[][] L21 = MatrixOperations.Mul_Matr_33_33(L1,L2T);
         double[][] L22 = MatrixOperations.Mul_Matr_33_33(L2,L2T);
-        double[][] L23 = MatrixOperations.Mul_Matr_33_33(L2,L3T);
+        double[][] L23 = MatrixOperations.Mul_Matr_33_33(L3,L2T);
 
-        double[][] L31 = MatrixOperations.Mul_Matr_33_33(L3,L1T);
-        double[][] L32 = MatrixOperations.Mul_Matr_33_33(L3,L2T);
+        double[][] L31 = MatrixOperations.Mul_Matr_33_33(L1,L3T);
+        double[][] L32 = MatrixOperations.Mul_Matr_33_33(L2,L3T);
         double[][] L33 = MatrixOperations.Mul_Matr_33_33(L3,L3T);
 
         //L21 - от СК2 к СК1}
@@ -369,72 +384,79 @@ public class RungeKutta {
         a1[2][2] = Iz1+m1m2*(x1*x1+y1*y1);
 
         //Матрица сделана как в книге (стр. 105) От 2 к 1 (L21)
-        a1[0][3] = m1m2*((y1*L21[2][1]-z1*L21[1][1])*z2-(y1*L21[2][2]-z1*L21[1][2])*y2);
-        a1[0][4] = m1m2*((y1*L21[2][2]-z1*L21[1][2])*x2-(y1*L21[2][0]-z1*L21[1][0])*z2);
-        a1[0][5] = m1m2*((y1*L21[2][0]-z1*L21[1][0])*y2-(y1*L21[2][1]-z1*L21[1][1])*x2);
-        a1[1][3] = m1m2*((z1*L21[0][2]-x1*L21[2][2])*z2-(z1*L21[0][1]-x1*L21[2][1])*y2); //!
-        a1[1][4] = m1m2*((z1*L21[0][0]-x1*L21[2][0])*x2-(z1*L21[0][2]-x1*L21[2][2])*z2); //!
-        a1[1][5] = m1m2*((z1*L21[0][1]-x1*L21[2][1])*y2-(z1*L21[0][0]-x1*L21[2][0])*x2);
-        a1[2][3] = m1m2*((x1*L21[1][2]-y1*L21[0][2])*z2-(x1*L21[1][1]-y1*L21[0][1])*y2);
-        a1[2][4] = m1m2*((x1*L21[1][0]-y1*L21[0][0])*x2-(x1*L21[1][2]-y1*L21[0][2])*z2);
-        a1[2][5] = m1m2*((x1*L21[1][1]-y1*L21[0][1])*y2-(x1*L21[1][0]-y1*L21[0][0])*x2);
+        a1[0][3] = -m1m2*((y1*L21[2][1]-z1*L21[1][1])*z2-(y1*L21[2][2]-z1*L21[1][2])*y2);
+        a1[0][4] = -m1m2*((y1*L21[2][2]-z1*L21[1][2])*x2-(y1*L21[2][0]-z1*L21[1][0])*z2);
+        a1[0][5] = -m1m2*((y1*L21[2][0]-z1*L21[1][0])*y2-(y1*L21[2][1]-z1*L21[1][1])*x2);
+        a1[1][3] = -m1m2*((z1*L21[0][2]-x1*L21[2][2])*z2-(z1*L21[0][1]-x1*L21[2][1])*y2); //!
+        a1[1][4] = -m1m2*((z1*L21[0][0]-x1*L21[2][0])*x2-(z1*L21[0][2]-x1*L21[2][2])*z2); //!
+        a1[1][5] = -m1m2*((z1*L21[0][1]-x1*L21[2][1])*y2-(z1*L21[0][0]-x1*L21[2][0])*x2);
+        a1[2][3] = -m1m2*((x1*L21[1][2]-y1*L21[0][2])*z2-(x1*L21[1][1]-y1*L21[0][1])*y2);
+        a1[2][4] = -m1m2*((x1*L21[1][0]-y1*L21[0][0])*x2-(x1*L21[1][2]-y1*L21[0][2])*z2);
+        a1[2][5] = -m1m2*((x1*L21[1][1]-y1*L21[0][1])*y2-(x1*L21[1][0]-y1*L21[0][0])*x2);
 
         //Матрица сделана как в книге (стр. 105)
-        a1[3][0] = a1[0][3];
-        a1[3][1] = a1[1][3];
-        a1[3][2] = a1[2][3];
-        a1[4][0] = a1[0][4];
-        a1[4][1] = a1[1][4];
-        a1[4][2] = a1[2][4];
-        a1[5][0] = a1[0][5];
-        a1[5][1] = a1[1][5];
-        a1[5][2] = a1[2][5];
+        a1[3][0] = -m1m2*((y1*L21[2][2]-z1*L21[1][2])*y2-(y1*L21[2][1]-z1*L21[1][1])*z2);
+        a1[3][1] = -m1m2*((z1*L21[0][2]-x1*L21[2][2])*y2-(z1*L21[0][1]-x1*L21[2][1])*z2);
+        a1[3][2] = -m1m2*((x1*L21[1][2]-y1*L21[0][2])*y2-(x1*L21[1][1]-y1*L21[0][1])*z2);
+        a1[4][0] = -m1m2*((y1*L21[2][0]-z1*L21[1][0])*z2-(y1*L21[2][2]-z1*L21[1][2])*x2);
+        a1[4][1] = -m1m2*((z1*L21[0][0]-x1*L21[2][0])*z2-(z1*L21[0][2]-x1*L21[2][2])*x2);
+        a1[4][2] = -m1m2*((x1*L21[1][0]-y1*L21[0][0])*z2-(x1*L21[1][2]-y1*L21[0][2])*x2);
+        a1[5][0] = -m1m2*((y1*L21[2][1]-z1*L21[1][1])*x2-(y1*L21[2][0]-z1*L21[1][0])*y2);
+        a1[5][1] = -m1m2*((z1*L21[0][1]-x1*L21[2][1])*x2-(z1*L21[0][0]-x1*L21[2][0])*y2);
+        a1[5][2] = -m1m2*((x1*L21[1][1]-y1*L21[0][1])*x2-(x1*L21[1][0]-y1*L21[0][0])*y2);
 
         //Матрица сделана как в книге (стр. 105)
         a1[3][3] = Ix2+m1m2*(y2*y2+z2*z2);
         a1[3][4] = -m1m2*x2*y2;
         a1[3][5] = -m1m2*x2*z2;
-        a1[4][3] = a1[3][4];
+        a1[4][3] = -m1m2*x2*y2;
         a1[4][4] = Iy2+m1m2*(x2*x2+z2*z2);
         a1[4][5] = -m1m2*y2*z2;
-        a1[5][3] = a1[3][5];
-        a1[5][4] = a1[4][5];
+        a1[5][3] = -m1m2*x2*z2;
+        a1[5][4] = -m1m2*y2*z2;
         a1[5][5] = Iz2+m1m2*(x2*x2+y2*y2);
 
         //Матрица сделана как в книге (стр. 105)
-        a1[0][6] = -m1m2*(L13[2][2]*y1-L13[2][1]*z1)*x3;
-        a1[0][7] = -m1m2*(L13[1][2]*y1-L13[1][1]*z1)*x3;
-        a1[1][6] = -m1m2*(L13[2][2]*x1-L13[0][2]*z1)*x3; //gde eto?
-        a1[1][7] = -m1m2*(L13[1][0]*z1-L13[1][2]*x1)*x3;
-        a1[2][6] = -m1m2*(L13[2][1]*x1-L13[2][0]*x1)*x3;
-        a1[2][7] = -m1m2*(L13[1][1]*x1-L13[1][1]*y1)*x3;
+        a1[0][6] = -m1m2*(L31[1][2]*z1-L31[2][2]*y1)*x3;
+        a1[0][7] = -m1m2*(L31[2][1]*y1-L31[1][1]*z1)*x3;
+        a1[1][6] = -m1m2*(L31[2][2]*x1-L31[0][2]*z1)*x3; //gde eto?
+        a1[1][7] = -m1m2*(L31[0][1]*z1-L31[2][1]*x1)*x3;
+        a1[2][6] = -m1m2*(L31[0][2]*y1-L31[1][2]*x1)*x3;
+        a1[2][7] = -m1m2*(L31[1][1]*x1-L31[0][1]*y1)*x3;
 
         //Матрица сделана как в книге (стр. 105)
-        a1[6][0] = -m1m2*(L13[2][2]*y1-L13[2][1]*z1)*x3;
-        a1[6][1] = -m1m2*(L13[2][2]*x1-L13[0][2]*z1)*x3;//gde eto?
-        a1[6][2] = -m1m2*(L13[2][1]*x1-L13[2][0]*x1)*x3;
-        a1[6][3] = -m1m2*(L23[2][2]*y2-L23[2][1]*z2)*x3;
-        a1[6][4] = -m1m2*(L23[2][0]*z2-L23[2][2]*x2)*x3;
-        a1[6][5] = -m1m2*(L23[2][1]*x2-L23[2][0]*y2)*x3;
-        a1[6][6] = m1m2*x3*x3; //!!
+        a1[6][0] = -m1m2*(L13[2][2]*y1-L13[2][1]*z1);
+        a1[6][1] = -m1m2*(L13[2][0]*z1-L13[2][2]*x1);//gde eto?
+        a1[6][2] = -m1m2*(L13[2][1]*x1-L13[2][0]*y1);
+        a1[6][3] = -m1m2*(L23[2][2]*y2-L23[2][1]*z2);
+        a1[6][4] = -m1m2*(L23[2][0]*z2-L23[2][2]*x2);
+        a1[6][5] = -m1m2*(L23[2][1]*x2-L23[2][0]*y2);
+        a1[6][6] = m1m2*x3; //!!
         a1[6][7] = 0.0;
 
         //Матрица сделана как в книге (стр. 105)
-        a1[3][6] = -m1m2*(L23[2][2]*y2-L23[2][1]*z2)*x3;
-        a1[3][7] = -m1m2*(L23[1][2]*y2-L23[0][0]*z2)*x3;
-        a1[4][6] = -m1m2*(L23[2][0]*z2-L23[2][2]*x2)*x3;
-        a1[4][7] = -m1m2*(L23[1][0]*z2-L23[1][2]*x2)*x3;
-        a1[5][6] = -m1m2*(L23[2][1]*x2-L23[2][0]*y2)*x3;
-        a1[5][7] = -m1m2*(L23[1][1]*x1-L23[1][0]*y1)*x3;
+        a1[3][6] = -m1m2*(L32[1][2]*z2-L32[2][2]*y2)*x3;
+        a1[3][7] = -m1m2*(L32[2][1]*y2-L32[1][1]*z2)*x3;
+        a1[4][6] = -m1m2*(L32[2][2]*x2-L32[0][2]*z2)*x3;
+        a1[4][7] = -m1m2*(L32[0][1]*z2-L32[2][1]*x2)*x3;
+        a1[5][6] = -m1m2*(L32[0][2]*y2-L32[1][2]*x2)*x3;
+        a1[5][7] = -m1m2*(L32[1][1]*x2-L32[1][0]*y2)*x3;
 
-        a1[7][0] = -m1m2*(L13[1][2]*y1-L13[1][1]*z1)*x3;
-        a1[7][1] = -m1m2*(L13[1][0]*z1-L13[1][2]*x1)*x3;
-        a1[7][2] = -m1m2*(L13[1][1]*x1-L13[1][1]*y1)*x3;
-        a1[7][3] = -m1m2*(L23[1][2]*y2-L23[1][1]*z2)*x3;
-        a1[7][4] = -m1m2*(L23[1][0]*z2-L23[1][2]*x2)*x3;
-        a1[7][5] = -m1m2*(L23[1][1]*x2-L23[1][0]*y2)*x3;
+        a1[7][0] = -m1m2*(L13[1][2]*y1-L13[1][1]*z1);
+        a1[7][1] = -m1m2*(L13[1][0]*z1-L13[1][2]*x1);
+        a1[7][2] = -m1m2*(L13[1][1]*x1-L13[1][0]*y1);
+        a1[7][3] = -m1m2*(L23[1][2]*y2-L23[1][1]*z2);
+        a1[7][4] = -m1m2*(L23[1][0]*z2-L23[1][2]*x2);
+        a1[7][5] = -m1m2*(L23[1][1]*x2-L23[1][0]*y2);
         a1[7][6] = 0.0;
-        a1[7][7] = -m1m2*x3*x3; //!!
+        a1[7][7] = -m1m2*x3; //!!
+
+        // делаем матрицу симметричной
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j<i; j++) {
+                a1[j][i] = a1[i][j];
+            }
+        }
 
         //Задание матрицы правых частей уравнения A*omega` = B
         omega1[0] = x.get(0);
@@ -503,7 +525,7 @@ public class RungeKutta {
 
         double[] WxWxR1_CK2 = MatrixOperations.Mul_Matr_33_31(L12,WxWxR1);
         double[] WxWxR1_CK3 = MatrixOperations.Mul_Matr_33_31(L13,WxWxR1);
-        double[] WxWxR2_CK1 = MatrixOperations.Mul_Matr_33_31(Lx,WxWxR2);
+        double[] WxWxR2_CK1 = MatrixOperations.Mul_Matr_33_31(L21,WxWxR2);
         double[] WxWxR2_CK3 = MatrixOperations.Mul_Matr_33_31(L23,WxWxR2);
         double[] WxWxR3_CK1 = MatrixOperations.Mul_Matr_33_31(L31,WxWxR3);
         double[] WxWxR3_CK2 = MatrixOperations.Mul_Matr_33_31(L32,WxWxR3);
@@ -528,6 +550,8 @@ public class RungeKutta {
         g = g0 * Math.pow(R3/(R3+x.get(19)),2); //ускорение свободного падения на высоте H, R3 - радиус Земли
         ro = 1.225 * Math.exp(-x.get(19)/7000); //плотность воздуха на высоте H
         q = 0.5 * ro * (x.get(17) * x.get(17)); //скоростной напор
+        R0.add(ro);
+        qList.add(q);
 
         RA1p[0] = Cx1 * Math.cos(AL1) * q * S1;
         RA1p[1] = Cy1 * Math.sin(AL1) * q * S1;
@@ -544,9 +568,9 @@ public class RungeKutta {
         Cyv1 = Cyp1 * Math.cos(AL1) + Cx1p * Math.sin(AL1);
         Cyv2 = Cyp2 * Math.cos(AL2) + Cx2p * Math.sin(AL2);
 
-        //MatrixOperations.Transp_Matr_33(L1p,Lx);
+        MatrixOperations.Transp_Matr_33(L1,Lx);
         RA1 = MatrixOperations.Mul_Matr_33_31(Lx, RA1p);
-        //MatrixOperations.Transp_Matr_33(L2p,Lx);
+        MatrixOperations.Transp_Matr_33(L2,Lx);
         RA2 = MatrixOperations.Mul_Matr_33_31(Lx, RA2p);
 
         double[] r10 = MatrixOperations.Mul_Matr_33_31(L1, RA1);
@@ -563,21 +587,35 @@ public class RungeKutta {
         double[] r3R2 = MatrixOperations.Mul_Matr_33_31(L3, RA2);
 
 
-        a1[0][8] = m1m*r1R2[0] - m2m*r1R1[0] + m1m2*R1W[0];
+        /*a1[0][8] = m1m*r1R2[0] - m2m*r1R1[0] + m1m2*R1W[0];
         a1[1][8] = 0.0;
         a1[2][8] = 0.0;
         a1[3][8] = 0.0;
         a1[4][8] = 0.0;
         a1[5][8] = 0.0;
         a1[6][8] = 0.0;
-        a1[7][8] = 0.0;
+        a1[7][8] = 0.0;*/
+
+        a1[0][8] = m1m*r1R2[0] - m2m*r1R1[0] + m1m2*R1W[0];
+        a1[1][8] = m1m*r1R2[1] - m2m*r1R1[1] + m1m2*R1W[1];
+        a1[2][8] = m1m*r1R2[2] - m2m*r1R1[2] + m1m2*R1W[2];
+
+        a1[3][8] = m2m*r2R1[0] - m1m*r2R2[0] + m1m2*R2W[0];
+        a1[4][8] = m2m*r2R1[1] - m1m*r2R2[1] + m1m2*R2W[1];
+        a1[5][8] = m2m*r2R1[2] - m1m*r2R2[2] + m1m2*R2W[2];
+
+        a1[6][8] = m1m*r3R2[2] - m2m*r3R1[2] + m1m2*R3W[1];
+        a1[7][8] = m1m*r3R2[1] - m2m*r3R1[1] + m1m2*R3W[2];
 
         double[] omega = new double[8];
         for(int i = 0; i < 8; i++){
             omega[i] = x.get(i);
         }
-        double[] newb = MatrixOperations.Mul_Matr_88_81(a1,omega); // умножая матрицы получаем матрицу B - вектор правых частей
-        //дифференциальных уравнений
+        double[] a2 = new double[8];
+        for(int i = 0; i < 8; i++){
+            a2[i] = a1[i][8];
+        }
+        double[] newb = Gaus.gaussSeidel(a1,a2);
 
         //b1 - полученная в результате решения матричного уравнения
         //матрица с заполненными первыми 6 элементами
@@ -599,22 +637,23 @@ public class RungeKutta {
 
         Rxv = Rx1*Math.cos(AL1)-Ry1*Math.sin(AL1)+Rx2*Math.cos(AL2)-Ry2*Math.cos(AL2);
 
-        f.set(0, b1[0]);
-        f.set(1, (b1[1] + my1 * q * S1 * Math.abs(x1)));
-        f.set(2, (b1[2] + mz1 * q * S1 * Math.abs(x1)));
-        f.set(3, b1[3]);
-        f.set(4, (b1[4] + my2 * q * S2 * Math.abs(x2)));
-        f.set(5, (b1[5] + mz2 * q * S2 * Math.abs(x2)));
-        f.set(6, (b1[6]));
-        f.set(7, (b1[7]));
+        f.set(0, newb[0]);
+        f.set(1, (newb[1] + my1 * q * S1 * Math.abs(x1)));
+        f.set(2, (newb[2] + mz1 * q * S1 * Math.abs(x1)));
+        f.set(3, newb[3]);
+        f.set(4, (newb[4] + my2 * q * S2 * Math.abs(x2)));
+        f.set(5, (newb[5] + mz2 * q * S2 * Math.abs(x2)));
+        f.set(6, (newb[6]));
+        f.set(7, (newb[7]));
 
         for(int i = 8; i < 17; i++){
             f.set(i, b1[i]);
         }
 
-        f.set(17, Rxv/(mass1+mass2)-g * Math.sin(x.get(18))); //x.get(13) это tetta - угол наклона траектории
-        f.set(18, (-g/x.get(17)+x.get(17)/(R3+x.get(19))) * Math.cos(x.get(18)));
+        f.set(17, (Rxv/(mass1+mass2)) - (g * Math.sin(x.get(18)))); //x.get(18) это tetta - угол наклона траектории
+        f.set(18, (-(g-(x.get(17)*x.get(17)/(R3+x.get(19)))) * Math.cos(x.get(18)))/x.get(17));
         f.set(19, x.get(17) * Math.sin(x.get(18)));
+        //f.set(17,7700.0);
 
         //Вычисление силы N1
         rad1[0] = x1;
@@ -663,8 +702,7 @@ public class RungeKutta {
         N1[1] = N1_1[1]+N1_2[1]+N1_3[1];
         N1[2] = N1_1[2]+N1_2[2]+N1_3[2];
 
-        N1abs = MatrixOperations.Modul_Vect(N1);
-
+        N1abs = MatrixOperations.Modul_Vect(N1)/10;
     }
 
     public static void Runge_Kutta4(double h, double x0, int nmax){
@@ -748,6 +786,7 @@ public class RungeKutta {
             Alfa1.add(Math.abs(Y0.get(9) * 180/Math.PI));
             Fi1.add(Math.abs(Y0.get(10) * 180/Math.PI));
             NList.add(N1abs); //добавляем в массив силу натяжения троса
+            H.add(Y0.get(19));
 
             for(int i = 0; i < 20; i++) {
                 k22.set(i, Y0.get(i) + (h * k11.get(i)) / 2);
@@ -759,6 +798,7 @@ public class RungeKutta {
             Alfa1.add(Math.abs(Y0.get(9) * 180/Math.PI));
             Fi1.add(Math.abs(Y0.get(10) * 180/Math.PI));
             NList.add(N1abs); //добавляем в массив силу натяжения троса
+            H.add(Y0.get(19));
 
             for(int i = 0; i < 20; i++) {
                 k33.set(i, Y0.get(i) + (h * k22.get(i)) / 2);
@@ -770,6 +810,7 @@ public class RungeKutta {
             Alfa1.add(Math.abs(Y0.get(9) * 180/Math.PI));
             Fi1.add(Math.abs(Y0.get(10) * 180/Math.PI));
             NList.add(N1abs); //добавляем в массив силу натяжения троса
+            H.add(Y0.get(19));
 
             for(int i = 0; i < 20; i++) {
                 k44.set(i, Y0.get(i) + (h * k33.get(i)));
@@ -781,6 +822,7 @@ public class RungeKutta {
             Alfa1.add(Math.abs(Y0.get(9) * 180/Math.PI));
             Fi1.add(Math.abs(Y0.get(10) * 180/Math.PI));
             NList.add(N1abs); //добавляем в массив силу натяжения троса
+            H.add(Y0.get(19));
 
             for (int i = 0; i < 20; i++){
                 Y0.set(i, Y0.get(i) + h*(k11.get(i) + 2*k22.get(i) + 2*k33.get(i) + k44.get(i))/6);
@@ -811,5 +853,17 @@ public class RungeKutta {
 
     public static List<Double> N(){
         return NList;
+    }
+
+    public static List<Double> H(){
+        return H;
+    }
+
+    public static List<Double> R0(){
+        return R0;
+    }
+
+    public static List<Double> getqList(){
+        return qList;
     }
 }
